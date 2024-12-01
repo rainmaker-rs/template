@@ -1,0 +1,35 @@
+{%- if esp -%}
+[target.{{ esp_target }}]
+linker = "ldproxy"
+runner = "espflash flash --partition-table-offset 32768 --monitor" 
+rustflags = [ "--cfg",  "espidf_time64" ]
+{% endif -%}
+
+[build]
+target = [
+{%- if esp -%}
+  "{{ esp_target }}",
+{%- endif -%}
+{%- if linux -%}
+  "{{ linux_target }}"
+{%- endif -%}
+]
+
+[alias]
+{% if linux -%}
+run_linux = "run --target {{ linux_target }}"
+add_linux = "add --target {{ linux_target }}"
+{% endif -%}
+
+{%- if esp -%}
+run_esp = "run --target {{ esp_target }}"
+add_esp = "add --target {{ esp_target }}"
+
+[unstable]
+build-std = ["std", "panic_abort"]
+
+[env]
+ESP_IDF_VERSION = "v5.2"
+MCU = "{{ mcu }}"
+CRATE_CC_NO_DEFAULTS = "1"
+{%- endif -%}

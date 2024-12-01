@@ -1,0 +1,10 @@
+[toolchain]
+{% if esp -%}
+{% if esp_arch == "xtensa" -%}
+channel = "esp"
+{% else -%}
+channel = "nightly"
+{% endif -%}
+{% else -%}
+channel = "stable"
+{% endif -%}

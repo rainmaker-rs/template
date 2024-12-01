@@ -1,0 +1,35 @@
+[template]
+cargo_generate_version = ">=0.17.4"
+ignore = [
+  ".git",
+  "LICENSE-APACHE",
+  "LICENSE-MIT",
+  "README.md"
+]
+
+[hooks]
+pre = ["pre-script.rhai"]
+
+[placeholders.linux]
+prompt = "Add support for Linux platform?"
+type = "bool"
+default = true
+
+[placeholders.esp]
+prompt = "Add support for ESP32 platform?"
+type = "bool"
+default = true
+
+[conditional.'esp'.placeholders.mcu]
+prompt = "Which MCU to target?"
+type = "string"
+choices = ["esp32", "esp32c2", "esp32c3", "esp32c6", "esp32h2", "esp32s2", "esp32s3"]
+default = "esp32"
+
+[conditional.'!esp']
+ignore = [
+  "build.rs",
+  "partitions.csv",
+  "sdkconfig.defaults",
+  "espflash.toml"
+]
