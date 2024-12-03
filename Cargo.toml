@@ -14,11 +14,26 @@ debug = true
 opt-level = "z"
 
 [dependencies]
+{% if template -%}
+anyhow = "1.0.93"
+log = "0.4.22"
+{% endif -%}
 rainmaker = { git = "https://github.com/shreyash-b/rainmaker-rs" }
+components = { git = "https://github.com/shreyash-b/rainmaker-rs" }
+
+{% if linux -%}
+{% if template -%}
+{% if template_logger -%}
+[target.x86_64unknown-linux-gnu.dependencies]
+simple_logger = "5.0.0"
+
+{% endif -%}
+{% endif -%}
+{% endif -%}
 
 {% if esp -%}
 [target.{{ esp_target }}.dependencies]
-esp-idf-svc = "0.49"
+esp-idf-svc = "0.49" # required for compilation even if not used
 
 [build-dependencies]
 embuild = { version = "0.32", features = ["espidf"] }

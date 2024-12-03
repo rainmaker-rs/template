@@ -1,11 +1,6 @@
 [template]
 cargo_generate_version = ">=0.17.4"
-ignore = [
-  ".git",
-  "LICENSE-APACHE",
-  "LICENSE-MIT",
-  "README.md"
-]
+ignore = [".git", "LICENSE-APACHE", "LICENSE-MIT", "README.md"]
 
 [hooks]
 pre = ["pre-script.rhai"]
@@ -23,13 +18,37 @@ default = true
 [conditional.'esp'.placeholders.mcu]
 prompt = "Which MCU to target?"
 type = "string"
-choices = ["esp32", "esp32c2", "esp32c3", "esp32c6", "esp32h2", "esp32s2", "esp32s3"]
+choices = [
+  "esp32",
+  "esp32c2",
+  "esp32c3",
+  "esp32c6",
+  "esp32h2",
+  "esp32s2",
+  "esp32s3",
+]
 default = "esp32"
 
 [conditional.'!esp']
-ignore = [
-  "build.rs",
-  "partitions.csv",
-  "sdkconfig.defaults",
-  "espflash.toml"
-]
+ignore = ["build.rs", "partitions.csv", "sdkconfig.defaults", "espflash.toml"]
+
+[placeholders.template]
+prompt = "Initialize template code for project?"
+type = "bool"
+default = true
+
+[conditional.'template'.placeholders.template_advanced]
+prompt = "Configure advanced template options?"
+type = "bool"
+default = false
+
+
+[conditional.'template_advanced'.placeholders.template_logger]
+prompt = "Initialize logger?"
+type = "bool"
+default = true
+
+[conditional.'template_advanced'.placeholders.template_wifi]
+prompt = "Setup WiFi provisioning?"
+type = "bool"
+default = true

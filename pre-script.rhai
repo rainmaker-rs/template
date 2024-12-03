@@ -40,3 +40,13 @@ if variable::is_set("mcu"){
 if variable::is_set("linux"){
   variable::set("linux_target", "x86_64-unknown-linux-gnu")
 }
+
+if variable::get("template"){
+  if !variable::get("template_advanced") {
+    variable::set("template_logger", true);
+    variable::set("template_wifi", true);
+  }
+}
+
+variable::set("node_name", to_title_case(variable::get("project-name")));
+variable::set("prov_name", to_shouty_snake_case(variable::get("project-name")));
