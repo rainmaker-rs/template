@@ -16,7 +16,7 @@ type = "bool"
 default = true
 
 [conditional.'esp'.placeholders.mcu]
-prompt = "Which MCU to target?"
+prompt = "Which ESP MCU to target?"
 type = "string"
 choices = [
   "esp32",
