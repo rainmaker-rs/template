@@ -8,6 +8,7 @@ It perform the project setup as required(sdkonfig, partitions, etc) to that you 
 ---
 
 ### Usage
+- Make sure [pre-requisites](https://github.com/shreyash-b/rainmaker-rs/blob/main/docs/PREREQUISITES.md) are installed. \
 - Install cargo-generate \
 `$ cargo install cargo-generate`
 - Crate a new project using this template \
