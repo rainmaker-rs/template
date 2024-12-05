@@ -23,7 +23,7 @@ rainmaker = "0.1"
 {% if linux -%}
 {% if template -%}
 {% if template_logger -%}
-[target.x86_64unknown-linux-gnu.dependencies]
+[target.x86_64-unknown-linux-gnu.dependencies]
 simple_logger = "5.0.0"
 
 {% endif -%}

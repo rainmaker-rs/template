@@ -39,7 +39,7 @@ pub fn connect_wifi(
     name: &str
 ) -> anyhow::Result<()> {
     let nvs_partition = NvsPartition::new("nvs")?;
-    wifi_arc_mutex = Arc::new(Mutex::new(WifiMgr::new()?));
+    let wifi_arc_mutex = Arc::new(Mutex::new(WifiMgr::new()?));
 
     let prov_config = WifiProvBleConfig {
         service_name: format!("PROV_{}", name),
